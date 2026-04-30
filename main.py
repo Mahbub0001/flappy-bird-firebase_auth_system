@@ -178,7 +178,7 @@ async def login(payload: LoginPayload):
 
             user_dict = dict(user)
             token = create_access_token({"sub": str(user_dict["id"])})
-            await db.execute("UPDATE users SET last_login = datetime('now') WHERE id = ?", (str(user_dict["id"]),))
+            await db.execute("UPDATE users SET last_login = datetime('now') WHERE id = ?", (user_dict["id"],))
             await db.commit()
             return {"access_token": token, "token_type": "bearer", "username": user_dict["username"]}
 
@@ -209,7 +209,7 @@ async def firebase_login(payload: FirebasePayload):
             # Existing user - log them in
             user_dict = dict(user)
             token = create_access_token({"sub": str(user_dict["id"])})
-            await db.execute("UPDATE users SET last_login = datetime('now') WHERE id = ?", (user_dict["id"]))
+            await db.execute("UPDATE users SET last_login = datetime('now') WHERE id = ?", (user_dict["id"],))
             await db.commit()
             return {"access_token": token, "token_type": "bearer", "username": user_dict["username"]}
         else:
