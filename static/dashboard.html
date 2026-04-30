@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird - Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="avatar" id="user-avatar">
+                    <span id="avatar-letter">?</span>
+                </div>
+                <h2 class="username" id="sidebar-username">Player</h2>
+                <p class="member-since" id="member-since">Member since --</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-section="history">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Game History</span>
+                </a>
+                <a href="#" class="nav-item" data-section="leaderboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 15l-2 5l-3-1l1-4"></path>
+                        <path d="M12 15l2 5l3-1l-1-4"></path>
+                        <path d="M20 8l-4 4"></path>
+                        <path d="M4 8l4 4"></path>
+                        <circle cx="12" cy="8" r="5"></circle>
+                    </svg>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="play-btn" id="play-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span>PLAY</span>
+                </a>
+                <button class="logout-btn" id="logout-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="section-overview" class="content-section active">
+                <h1 class="section-title">Dashboard</h1>
+
+                <div class="stats-grid">
+                    <div class="stat-card accent-cyan">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-high-score">0</span>
+                            <span class="stat-label">High Score</span>
+                        </div>
+                    </div>
+                    <div class="stat-card accent-green">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-games">0</span>
+                            <span class="stat-label">Games Played</span>
+                        </div>
+                    </div>
+                    <div class="stat-card accent-purple">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-total-score">0</span>
+                            <span class="stat-label">Total Score</span>
+                        </div>
+                    </div>
+                    <div class="stat-card accent-orange">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-avg-score">0</span>
+                            <span class="stat-label">Avg Score</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Game Card -->
+                <div class="best-game-card" id="best-game-card">
+                    <div class="best-game-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <span>Best Game</span>
+                    </div>
+                    <div class="best-game-body">
+                        <div class="best-score" id="best-score">--</div>
+                        <div class="best-date" id="best-date">No games yet</div>
+                    </div>
+                </div>
+
+                <!-- Quick Play -->
+                <div class="quick-play-card">
+                    <div class="quick-play-info">
+                        <h3>Ready to fly?</h3>
+                        <p>Beat your high score of <strong id="quick-high">0</strong></p>
+                    </div>
+                    <a href="/game" class="quick-play-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="section-history" class="content-section">
+                <h1 class="section-title">Game History</h1>
+                <div class="history-table-wrap">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body">
+                            <tr><td colspan="3" class="empty-state">No games played yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Leaderboard Section -->
+            <section id="section-leaderboard" class="content-section">
+                <h1 class="section-title">Leaderboard</h1>
+                <div class="leaderboard-list" id="leaderboard-list">
+                    <div class="empty-state">No scores yet. Be the first!</div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="section-settings" class="content-section">
+                <h1 class="section-title">Settings</h1>
+
+                <div class="settings-card">
+                    <h3 class="settings-group-title">Profile</h3>
+                    <div class="settings-row">
+                        <span class="settings-label">Username</span>
+                        <span class="settings-value" id="settings-username">--</span>
+                    </div>
+                    <div class="settings-row">
+                        <span class="settings-label">Email</span>
+                        <span class="settings-value" id="settings-email">--</span>
+                    </div>
+                    <div class="settings-row">
+                        <span class="settings-label">Member Since</span>
+                        <span class="settings-value" id="settings-joined">--</span>
+                    </div>
+                    <div class="settings-row">
+                        <span class="settings-label">Last Login</span>
+                        <span class="settings-value" id="settings-last-login">--</span>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3 class="settings-group-title">Avatar Color</h3>
+                    <div class="color-picker" id="color-picker">
+                        <button class="color-swatch" data-color="#00c8ff" style="background:#00c8ff"></button>
+                        <button class="color-swatch" data-color="#00ff88" style="background:#00ff88"></button>
+                        <button class="color-swatch" data-color="#ff6bff" style="background:#ff6bff"></button>
+                        <button class="color-swatch" data-color="#ff4466" style="background:#ff4466"></button>
+                        <button class="color-swatch" data-color="#ffcc00" style="background:#ffcc00"></button>
+                        <button class="color-swatch" data-color="#ff8800" style="background:#ff8800"></button>
+                        <button class="color-swatch" data-color="#8855ff" style="background:#8855ff"></button>
+                        <button class="color-swatch" data-color="#00ffcc" style="background:#00ffcc"></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="overlay">
+            <div class="overlay-content">
+                <h1 class="game-title">FLAPPY<br>BIRD</h1>
+                <div class="subtitle">Neon Edition</div>
+                <button id="start-btn" class="neon-btn">PLAY</button>
+                <div class="high-score-display">
+                    <span class="hs-label">BEST</span>
+                    <span id="start-high-score" class="hs-value">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen" class="overlay hidden">
+            <div class="overlay-content">
+                <h1 class="gameover-title">GAME OVER</h1>
+                <div class="score-summary">
+                    <div class="score-row">
+                        <span class="score-label">SCORE</span>
+                        <span id="final-score" class="score-value">0</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">BEST</span>
+                        <span id="final-high-score" class="score-value">0</span>
+                    </div>
+                </div>
+                <div id="new-record" class="new-record hidden">NEW RECORD!</div>
+                <button id="restart-btn" class="neon-btn">RETRY</button>
+                <a href="/dashboard" class="neon-btn secondary-btn">DASHBOARD</a>
+            </div>
+        </div>
+
+        <!-- HUD -->
+        <div id="hud" class="hidden">
+            <div id="score-display">0</div>
+        </div>
+
+        <!-- Back to Dashboard -->
+        <a href="/dashboard" class="back-btn" title="Dashboard">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+        </a>
+
+        <!-- Sound toggle -->
+        <button id="sound-toggle" class="sound-btn" title="Toggle Sound">
+            <svg id="sound-on-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg id="sound-off-icon" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
+    </div>
+
+    <script src="/static/game.js"></script>
+</body>
+</html>

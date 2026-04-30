@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a1a;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.auth-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+}
+
+.auth-card {
+    position: relative;
+    z-index: 1;
+    width: 420px;
+    padding: 40px 36px 30px;
+    background: rgba(10, 10, 30, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    box-shadow:
+        0 0 40px rgba(0, 200, 255, 0.15),
+        0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #00c8ff, #00ff88, #ff6bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(0, 200, 255, 0.4));
+}
+
+.auth-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: rgba(0, 200, 255, 0.5);
+    letter-spacing: 6px;
+    margin-top: 6px;
+}
+
+/* Tab Switcher */
+.tab-switcher {
+    display: flex;
+    position: relative;
+    background: rgba(0, 200, 255, 0.05);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: rgba(0, 200, 255, 0.5);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.tab-btn.active {
+    color: #0a0a1a;
+}
+
+.tab-indicator {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: linear-gradient(135deg, #00c8ff, #00ff88);
+    border-radius: 10px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+
+.tab-indicator.right {
+    transform: translateX(100%);
+}
+
+/* Input Group */
+.input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(0, 200, 255, 0.4);
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px 14px 46px;
+    background: rgba(0, 200, 255, 0.05);
+    border: 1px solid rgba(0, 200, 255, 0.15);
+    border-radius: 12px;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: rgba(200, 220, 255, 0.3);
+}
+
+.input-group input:focus {
+    border-color: rgba(0, 200, 255, 0.5);
+    background: rgba(0, 200, 255, 0.08);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.1);
+}
+
+.input-group input:focus + .input-icon,
+.input-group:focus-within .input-icon {
+    color: #00c8ff;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #00c8ff, #00ff88);
+    border: none;
+    border-radius: 12px;
+    color: #0a0a1a;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 200, 255, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Error Message */
+.error-msg {
+    background: rgba(255, 68, 102, 0.1);
+    border: 1px solid rgba(255, 68, 102, 0.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    color: #ff4466;
+    font-size: 13px;
+    text-align: center;
+}
+
+.error-msg.hidden {
+    display: none;
+}
+
+/* Footer Links */
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: rgba(200, 220, 255, 0.4);
+    font-size: 13px;
+}
+
+.auth-footer a {
+    color: #00c8ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-footer a:hover {
+    color: #00ff88;
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    gap: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0, 200, 255, 0.15);
+}
+
+.divider span {
+    color: rgba(200, 220, 255, 0.3);
+    font-size: 11px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+/* Google Button */
+.google-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+}
+
+.google-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.google-logo {
+    flex-shrink: 0;
+}
+
+.auth-form.hidden {
+    display: none;
+}
+
+.auth-footer .hidden {
+    display: none;
+}
+
+/* Loading spinner */
+.submit-btn .spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(10, 10, 26, 0.3);
+    border-top-color: #0a0a1a;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .auth-card {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+        padding: 30px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,300 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+        0 0 30px rgba(0, 200, 255, 0.3),
+        0 0 60px rgba(0, 200, 255, 0.1),
+        inset 0 0 30px rgba(0, 200, 255, 0.05);
+    border: 2px solid rgba(0, 200, 255, 0.3);
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Overlays */
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(5, 5, 20, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #00c8ff, #00ff88, #ff6bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px rgba(0, 200, 255, 0.5));
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: rgba(0, 200, 255, 0.6);
+    letter-spacing: 8px;
+    margin-bottom: 40px;
+}
+
+.gameover-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #ff4466;
+    text-shadow: 0 0 20px rgba(255, 68, 102, 0.5);
+    margin-bottom: 30px;
+}
+
+/* Neon Button */
+.neon-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 14px 50px;
+    border: 2px solid #00c8ff;
+    background: rgba(0, 200, 255, 0.1);
+    color: #00c8ff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 3px;
+    margin: 10px 0;
+}
+
+.neon-btn:hover {
+    background: rgba(0, 200, 255, 0.25);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.4), inset 0 0 25px rgba(0, 200, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.neon-btn:active {
+    transform: scale(0.98);
+}
+
+/* High Score Display */
+.high-score-display {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.hs-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    color: rgba(0, 255, 136, 0.7);
+    letter-spacing: 3px;
+}
+
+.hs-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #00ff88;
+    text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+/* Score Summary */
+.score-summary {
+    margin-bottom: 20px;
+}
+
+.score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.score-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+}
+
+.score-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.score-row:last-child .score-value {
+    color: #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.new-record {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    color: #ffcc00;
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+    animation: pulse 0.6s ease-in-out infinite alternate;
+    margin-bottom: 15px;
+}
+
+.new-record.hidden {
+    display: none;
+}
+
+@keyframes pulse {
+    from { opacity: 0.7; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.1); }
+}
+
+/* HUD */
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 0; right: 0;
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+#hud.hidden {
+    display: none;
+}
+
+#score-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow:
+        0 0 10px rgba(0, 200, 255, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Sound Toggle */
+.sound-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 15;
+    background: rgba(0, 200, 255, 0.1);
+    border: 1px solid rgba(0, 200, 255, 0.3);
+    color: #00c8ff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+    background: rgba(0, 200, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+}
+
+/* Back to Dashboard */
+.back-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 15;
+    background: rgba(0, 200, 255, 0.1);
+    border: 1px solid rgba(0, 200, 255, 0.3);
+    color: #00c8ff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    background: rgba(0, 200, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+}
+
+/* Secondary Button */
+.secondary-btn {
+    font-size: 12px;
+    padding: 10px 30px;
+    border-color: rgba(0, 200, 255, 0.4);
+    color: rgba(0, 200, 255, 0.7);
+    background: rgba(0, 200, 255, 0.05);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.secondary-btn:hover {
+    background: rgba(0, 200, 255, 0.15);
+    color: #00c8ff;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-height: 650px) {
+    #game-container {
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+}
+
+@media (max-width: 420px) {
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+}
