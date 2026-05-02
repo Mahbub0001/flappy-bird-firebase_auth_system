@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "apiKey": "AIzaSyDEr_27Os0rPz1eYs2vxndQ3lSYVQQWv7E",
+  "authDomain": "flappy-bird-f246c.firebaseapp.com",
+  "projectId": "flappy-bird-f246c",
+  "databaseURL": "https://flappy-bird-f246c.firebaseio.com",
+  "storageBucket": "flappy-bird-f246c.firebasestorage.app",
+  "messagingSenderId": "55662868227",
+  "appId": "1:55662868227:web:6f3468d633b89ccb055b36",
+  "measurementId": "G-KKSWHLFCGN",
+  "apiBase": "http://localhost:8000"
+}

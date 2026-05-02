@@ -78,7 +78,11 @@ app = FastAPI(lifespan=lifespan)
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://mahbub0001.github.io",  # Replace with your GitHub Pages URL
+        "http://localhost:8001",             # Local testing (frontend on port 8001)
+        "http://localhost:3000",             # Alternative local port
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
